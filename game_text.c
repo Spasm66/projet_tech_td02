@@ -10,6 +10,8 @@ int main(void) {
     game_set_square(g, 1, 0, 1);
     game_print(g);
     char user_sres = '\0';
+    int posx = 0;
+    int posy = 0;
     while(!game_won(g))
     {
         scanf(" %c", &user_sres);
@@ -17,8 +19,6 @@ int main(void) {
         switch(user_sres)
         {
             case 't':
-                int posx = 0;
-                int posy = 0;
                 scanf(" %d", &posx);
                 scanf(" %d", &posy);
                 printf("posx: %d, posy: %d\n", posx, posy);
@@ -26,8 +26,6 @@ int main(void) {
                 break;
 
             case 'g':
-                int posx = 0;
-                int posy = 0;
                 scanf(" %d", &posx);
                 scanf(" %d", &posy);
                 printf("posx: %d, posy: %d\n", posx, posy);
@@ -35,8 +33,6 @@ int main(void) {
                 break;
 
             case 'e':
-                int posx = 0;
-                int posy = 0;
                 scanf(" %d", &posx);
                 scanf(" %d", &posy);
                 printf("posx: %d, posy: %d\n", posx, posy);
@@ -48,11 +44,11 @@ int main(void) {
                 break;
 
             case 'r':
-                // reset
+                game_restart(g);
                 break;
 
             case 'f':
-                // remplir d'herbe
+                game_fill_grass(g);
                 break;
 
             case 'q':
@@ -62,6 +58,7 @@ int main(void) {
             default:
                 break;
         }
+        game_print(g);
     }
     return EXIT_SUCCESS; 
 }
