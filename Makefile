@@ -9,7 +9,7 @@ LDLIBS = -L. -lgame
 
 all: $(GAME_TEXT)
 
-$(GAME_TEXT): $(OBJ_GAME_TEXT)
+$(GAME_TEXT): $(OBJ_GAME_TEXT) libgame.a
 	$(CC) $(CFLAGS) -o $@ $^ $(LDLIBS)
 
 %.o: %.c game.h game_aux.h

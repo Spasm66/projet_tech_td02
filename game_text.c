@@ -7,15 +7,17 @@ int main(void) {
     game    g;
 
     g = game_default();
-    game_set_square(g, 1, 0, 1);
     game_print(g);
     char user_sres = '\0';
     int posx = 0;
     int posy = 0;
     while(!game_won(g))
     {
+        printf("> ? [h for help]\n");
         scanf(" %c", &user_sres);
         printf("input: %c\n", user_sres);
+        if (user_sres == 'q')
+            break;
         switch(user_sres)
         {
             case 't':
@@ -40,7 +42,12 @@ int main(void) {
                 break;
 
             case 'h':
-                printf("help\n");
+                printf("-press 't <i> <j>' to put a tent square (i,j)\n");
+                printf("-press 'g <i> <j>' to put a grass square (i,j)\n");
+                printf("-press 'e <i> <j>' to put an empty square (i,j)\n");
+                printf("-press 'f' to fill grass\n");
+                printf("-press 'r' to restart\n");
+                printf("-press 'q' to quit\n");
                 break;
 
             case 'r':
@@ -50,15 +57,17 @@ int main(void) {
             case 'f':
                 game_fill_grass(g);
                 break;
-
-            case 'q':
-                game_delete(g);
-                break;  
                 
             default:
                 break;
         }
         game_print(g);
     }
+    
+    if (game_won(g))
+        printf("congratulation\n");
+    else
+        printf("shame\n");
+    game_delete(g);
     return EXIT_SUCCESS; 
 }
